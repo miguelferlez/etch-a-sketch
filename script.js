@@ -1,9 +1,25 @@
 const grid = document.querySelector('.grid');
+const gridSizeSpans = document.getElementsByClassName('size');
+const modal = document.querySelector('.modal');
+const resizeModal = document.querySelector('.resize-modal');
+const applyButton = document.querySelector('.apply-button');
+const resizeButton = document.querySelector('.resize-button');
+const rangeInput = document.querySelector('#rangeInput');
+let newSize = 0;
+let size = 16;
 let mouseIsDown = false;
 let mouseIsUp = true;
 
 function init() {
-    setGrid(16);
+    resizeButton.addEventListener('click', showResizeModal);
+    applyButton.addEventListener('click', resizeGrid);
+    for (let i = 0; i < gridSizeSpans.length; i++) {
+        gridSizeSpans[i].textContent = size;
+    }
+    setGrid(size);
+    rangeInput.addEventListener('input', () => {
+        newSize = document.getElementById('rangeInput').value;
+    })
 }
 
 function setGrid(size) {
@@ -23,7 +39,6 @@ function setGrid(size) {
             });
 
             grid.appendChild(cell);
-
             //Mouse events to paint the cell when holding click down and stop in click up
             cell.addEventListener('mousedown', (e) => {
                 mouseIsDown = true;
@@ -31,7 +46,7 @@ function setGrid(size) {
             });
             cell.addEventListener('mousemove', (e) => {
                 if (mouseIsDown) {
-                    draw(cell,'black');
+                    draw(cell, 'black');
                 }
             });
             cell.addEventListener('mouseup', (e) => {
@@ -42,8 +57,36 @@ function setGrid(size) {
     }
 }
 
-function draw(target,color) {
+function clearGrid() {
+    grid.innerHTML = ''
+}
+
+function draw(target, color) {
     target.style.backgroundColor = color;
+}
+
+function showResizeModal() {
+    modal.style.display = 'flex';
+    resizeModal.style.display = 'flex';
+    modal.addEventListener('click', function (e) {
+        if (e.target.matches('.cancel-button') || !e.target.closest('.resize-modal')) {
+            closeModal();
+        }
+    });
+}
+
+function resizeGrid() {
+
+    for (let i = 0; i < gridSizeSpans.length; i++) {
+        gridSizeSpans[i].textContent = newSize;
+    }
+    clearGrid();
+    setGrid(newSize);
+    closeModal();
+}
+
+function closeModal() {
+    modal.style.display = 'none';
 }
 
 window.addEventListener('load', init);

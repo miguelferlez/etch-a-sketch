@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,37 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <header>
         <h1>Etch-a-sketch</h1>
     </header>
+    <div class="modal">
+        <div class="resize-modal">
+            <div class="modal-content">
+                <div>New size: <output id="rangeOutput">16 x 16</output></div>
+                <input type="range" id="rangeInput" value="16" min="1" max="64"
+                oninput="rangeOutput.value = rangeInput.value + ' x ' + rangeInput.value">
+            </div>
+            <div class="modal-button">
+                <button class="apply-button">Apply</button>
+                <button class="cancel-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
+        <div class="menu">
+            <div class="resize">
+                <div>Grid size: <span class="size"></span> x <span class="size"></span></div>
+                <button class="resize-button">Change</button>
+            </div>
+        </div>
         <div class="grid"></div>
     </div>
+    <footer>
+        <h1>@miguelferlez</h1>
+    </footer>
 </body>
+
 </html>
