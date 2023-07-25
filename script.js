@@ -5,14 +5,17 @@ const resizeModal = document.querySelector('.resize-modal');
 const applyButton = document.querySelector('.apply-button');
 const resizeButton = document.querySelector('.resize-button');
 const rangeInput = document.querySelector('#rangeInput');
+const clearButton = document.querySelector('.clear-button');
 let newSize = 0;
 let size = 16;
 let mouseIsDown = false;
 let mouseIsUp = true;
 
 function init() {
+    newSize = size;
     resizeButton.addEventListener('click', showResizeModal);
     applyButton.addEventListener('click', resizeGrid);
+    clearButton.addEventListener('click', reloadGrid);
     for (let i = 0; i < gridSizeSpans.length; i++) {
         gridSizeSpans[i].textContent = size;
     }
@@ -57,8 +60,9 @@ function setGrid(size) {
     }
 }
 
-function clearGrid() {
-    grid.innerHTML = ''
+function reloadGrid() {
+    grid.innerHTML = '';
+    setGrid(newSize);
 }
 
 function draw(target, color) {
@@ -80,8 +84,7 @@ function resizeGrid() {
     for (let i = 0; i < gridSizeSpans.length; i++) {
         gridSizeSpans[i].textContent = newSize;
     }
-    clearGrid();
-    setGrid(newSize);
+    reloadGrid();
     closeModal();
 }
 
