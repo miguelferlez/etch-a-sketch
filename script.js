@@ -70,9 +70,17 @@ function setGrid(size) {
             cell.addEventListener('mousedown', (e) => {
                 mouseIsDown = true;
                 mouseIsUp = false;
+                if (mouseIsDown) {
+                    if (modeIsEraser) {
+                        draw(cell, 'white');
+                    } else if (modeIsRainbow) {
+                        draw(cell, "rgb(" + getRandomNumber(1, 255) + "," + getRandomNumber(1, 255) + "," + getRandomNumber(1, 255) + ")");
+                    } else {
+                        draw(cell, 'black');
+                    }
+                }
             });
             cell.addEventListener('mousemove', (e) => {
-                let shading = 0.1;
                 if (mouseIsDown) {
                     if (modeIsEraser) {
                         draw(cell, 'white');
