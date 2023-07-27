@@ -47,6 +47,7 @@ footer {
 button {
     font-family: 'Silkscreen', cursive;
     padding: 10px 0;
+    background-color: none;
     border: 2px solid black;
 }
 
@@ -85,6 +86,11 @@ button:hover {
 
 .apply-button, .cancel-button, .resize-button {
     flex: auto;
+}
+
+.eraser-button.clicked, .rainbow-button.clicked {
+  background-color: black;
+  color: rgb(240, 240, 240);
 }
 
 .grid {
