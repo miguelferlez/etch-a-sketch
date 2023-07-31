@@ -88,7 +88,7 @@ button:hover {
     flex: auto;
 }
 
-.eraser-button.clicked, .rainbow-button.clicked {
+.eraser-button.clicked, .rainbow-button.clicked, .lines-button.clicked {
   background-color: black;
   color: rgb(240, 240, 240);
 }
@@ -101,8 +101,12 @@ button:hover {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
 }
 
+.grid.lines-enabled > div {
+  box-shadow: 0 0 0 1px black;
+}
+
 .cell {
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: white;
 }
 
 /*Custom generated range input*/

@@ -9,6 +9,7 @@ const resizeButton = document.querySelector('.resize-button');
 const rangeInput = document.querySelector('#rangeInput');
 const rainbowButton = document.querySelector('.rainbow-button');
 const eraserButton = document.querySelector('.eraser-button');
+const linesButton = document.querySelector('.lines-button'); 
 const clearButton = document.querySelector('.clear-button');
 
 let newSize = 0;
@@ -29,21 +30,25 @@ function init() {
 
     resizeButton.addEventListener('click', showResizeModal);
     applyButton.addEventListener('click', resizeGrid);
-
     rainbowButton.addEventListener('click', () => {
         rainbowButton.classList.toggle('clicked');
         modeIsRainbow = !modeIsRainbow;
         disableEraserMode();
-    })
+    });
     eraserButton.addEventListener('click', () => {
         eraserButton.classList.toggle('clicked');
         modeIsEraser = !modeIsEraser;
         disableRainbowMode();
+    });
+    linesButton.addEventListener('click', () => {
+        linesButton.classList.toggle('clicked');
+        grid.classList.toggle('lines-enabled');
+
     })
     clearButton.addEventListener('click', reloadGrid);
     rangeInput.addEventListener('input', () => {
         newSize = document.getElementById('rangeInput').value;
-    })
+    });
 }
 
 function setGrid(size) {
