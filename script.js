@@ -6,14 +6,18 @@ const resizeModal = document.querySelector('.resize-modal');
 
 const applyButton = document.querySelector('.apply-button');
 const resizeButton = document.querySelector('.resize-button');
-const rangeInput = document.querySelector('#rangeInput');
 const rainbowButton = document.querySelector('.rainbow-button');
 const eraserButton = document.querySelector('.eraser-button');
-const linesButton = document.querySelector('.lines-button'); 
+const linesButton = document.querySelector('.lines-button');
 const clearButton = document.querySelector('.clear-button');
 
-let newSize = 0;
+const rangeInput = document.querySelector('#rangeInput');
+const colorInput = document.querySelector('#colorInput');
+
 let size = 16;
+let newSize = 0;
+let color = '#000000'
+let newColor = '';
 let modeIsEraser = false;
 let modeIsRainbow = false;
 let mouseIsDown = false;
@@ -21,6 +25,7 @@ let mouseIsUp = true;
 
 function init() {
     newSize = size;
+    newColor = color;
 
     setGrid(size);
 
@@ -46,9 +51,13 @@ function init() {
 
     })
     clearButton.addEventListener('click', reloadGrid);
+
     rangeInput.addEventListener('input', () => {
         newSize = document.getElementById('rangeInput').value;
     });
+    colorInput.addEventListener('input', () => {
+        newColor = document.getElementById('colorInput').value;
+    })
 }
 
 function setGrid(size) {
@@ -81,7 +90,7 @@ function setGrid(size) {
                     } else if (modeIsRainbow) {
                         draw(cell, "rgb(" + getRandomNumber(1, 255) + "," + getRandomNumber(1, 255) + "," + getRandomNumber(1, 255) + ")");
                     } else {
-                        draw(cell, 'black');
+                        draw(cell, newColor);
                     }
                 }
             });
@@ -92,7 +101,7 @@ function setGrid(size) {
                     } else if (modeIsRainbow) {
                         draw(cell, "rgb(" + getRandomNumber(1, 255) + "," + getRandomNumber(1, 255) + "," + getRandomNumber(1, 255) + ")");
                     } else {
-                        draw(cell, 'black');
+                        draw(cell, newColor);
                     }
                 }
             });
